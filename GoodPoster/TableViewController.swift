@@ -14,6 +14,8 @@ class TableViewController: UITableViewController {
     var sum:Int=0
     
     //顯示數量
+
+    @IBOutlet var m00: UILabel!
     @IBOutlet var m11: UILabel!
     @IBOutlet var m12: UILabel!
     @IBOutlet var m21: UILabel!
@@ -24,6 +26,7 @@ class TableViewController: UITableViewController {
     @IBOutlet var sumNT: UILabel!//總額
     
     //紀數量
+    var count00:Int=0
     var count11:Int=0
     var count12:Int=0
     var count21:Int=0
@@ -45,7 +48,7 @@ class TableViewController: UITableViewController {
     let formatter = NumberFormatter()
     
     func claculate(){
-        sum = count11 * 100 + count12 * 50 + count21 * 45 + count22 * 40 + count31 * 35 + count32 * 30
+        sum = count00 * 100 + count11 * 100 + count12 * 50 + count21 * 45 + count22 * 40 + count31 * 35 + count32 * 30
         
         formatter.maximumFractionDigits = 0//小數點後顯示0位，因為都是整數不需要小數點
         
@@ -56,6 +59,12 @@ class TableViewController: UITableViewController {
         let moneyString = formatter.string(from: NSNumber(value: sum))//把數字轉格式
         
         sumNT.text = moneyString
+    }
+    
+    @IBAction func s00(_ sender: UIStepper) {
+        count00 = Int(sender.value)
+        m00.text = "\(count00)"
+        claculate()
     }
     
     @IBAction func s11(_ sender: UIStepper) {
